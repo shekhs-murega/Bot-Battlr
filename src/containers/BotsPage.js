@@ -44,6 +44,32 @@ function BotsPage() {
       setFilteredCollection(newFilteredCollection);
       setBotArmy(newArmy);
 
-      
-
-export default BotsPage
+      fetch(`http://localhost:6001/bots/${bot.id}`, {
+        method: 'DELETE'
+      })
+        .then(response => response.json())
+        .then(result => console.log(result));
+    };
+  
+    const displayBotSpecs = (bot) => {
+      setCollectionVisible(false);
+      setBotSpecs(bot);
+    };
+  
+    const displayBotCollection = () => {
+      setCollectionVisible(true);
+    };
+  
+    return (
+      <div>
+        <YourBotArmy bots={botArmy} action={removeFromArmy} removeCard={removeBotPermanently} />
+        {collectionVisible ? (
+          <BotCollection botCollection={filteredCollection} action={displayBotSpecs} removeCard={removeBotPermanently} />
+        ) : (
+          <BotSpecs bot={botSpecs} back={displayBotCollection} enlist={addToArmy} />
+        )}
+      </div>
+    );
+  }
+  
+  export default BotsPage;
