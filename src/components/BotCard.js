@@ -1,5 +1,6 @@
 import React from 'react'
 
+// Mapping of bot classes to semantic UI icon classes
 const botTypeClasses = {
     Assault: "icon military",
     Defender: "icon shield",
@@ -9,15 +10,18 @@ const botTypeClasses = {
     Captain: "icon star"
 };
 
+// BotCard component definiton
 const BotCard = props => {
     const { bot, action, removeCard } = props;
 
+    // Handle click event for selecting a bot
   function handleClick(e) {
     console.log("handleClick fired!");
     // e.stopPropagation()
     action(bot);
   }
 
+  // Handle click event for discharging a bot 
   function handleDischarge(e) {
     console.log("Red X Clicked!");
     e.stopPropagation();
